@@ -34,12 +34,14 @@ input:
  *   Agregá esta alternativa dentro de 'linea':
  *     | error '\n'  { yyerrok; printf("Error: sintaxis invalida\n"); }
  */
+
 linea:
-    exp '\n'    { printf("= %d\n", $1); }
+  exp '\n'  { printf("= %d\n", $1); }
+  | error '\n'  { yyerrok; printf("Error: sintaxis invalida\n"); }
   ;
 
 exp:
-    exp '+' exp   { $$ = $1 + $3; }
+  exp '+' exp   { $$ = $1 + $3; }
   | exp '-' exp   { $$ = $1 - $3; }
   | exp '*' exp   { $$ = $1 * $3; }
   | exp '/' exp   { $$ = $1 / $3; }
@@ -50,5 +52,5 @@ exp:
 %%
 
 int main(void) {
-    return yyparse();
+  return yyparse();
 }
