@@ -12,7 +12,13 @@
  */
 
 int main(int argc, char *argv[]) {
-    (void)argc; (void)argv;
-    /* TODO */
+    (void) argc;
+    char *elementoComun = argv[1];
+    for (char **arg = argv + 1; *arg != NULL; arg++)
+        if (!AreEqual(*arg, elementoComun)){
+            printf("0\n");
+            return 0;
+        }
+    printf("1\n");
     return 0;
 }
